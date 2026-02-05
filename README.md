@@ -36,6 +36,37 @@ curl -o /opt/arin_waitlist.py https://raw.githubusercontent.com/valornode/arin-w
 curl -o /opt/arin_waitlist.env https://raw.githubusercontent.com/valornode/arin-waitlist-monitor/refs/heads/main/arin_waitlist.env
 ```
 ---
+## Edit the .env
+After installation, the script will **not work until the `.env` file is updated** with your own values.
+
+Open the file for editing:
+
+```bash
+nano /opt/arin_waitlist.env
+```
+Update the following fields:
+
+ARIN_TARGET_DATE
+This must exactly match the “Date and Time Added to Waiting List” shown on the ARIN IPv4 Waiting List page.
+The match is case-sensitive and includes the day name and timezone.
+
+- SMTP_HOST
+    The hostname of your SMTP server.
+
+- SMTP_PORT
+    Use 465 for SMTPS (implicit TLS) or 587 for SMTP with STARTTLS.
+
+- SMTP_USER
+    The username for SMTP authentication (usually an email address).
+
+- SMTP_PASS
+    The password or app-specific password for the SMTP account.
+
+- MAIL_FROM
+    The sender address shown in the email.
+
+- MAIL_TO
+    One or more recipient email addresses. Multiple recipients can be separated by commas, semicolons, or spaces.
 
 ## Run the Script Manually
 ```
@@ -46,8 +77,13 @@ python /opt/arin_waitlist.py --once
 ---
 
 ## Run the Script Automatically
+This will make the script run every 12 hours:
 ```
 0 */12 * * * set -a && source /opt/arin_waitlist.env && set +a && source /opt/arin-waitlist/bin/activate && python /opt/arin_waitlist.py --once >> /var/log/arin_waitlist.log 2>&1
+```
+This will make the script run every day at midnight:
+```
+0 0 * * * set -a && source /opt/arin_waitlist.env && set +a && source /opt/arin-waitlist/bin/activate && python /opt/arin_waitlist.py --once >> /var/log/arin_waitlist.log 2>&1
 ```
 ---
 ## Email Format
