@@ -22,7 +22,7 @@ curl -o /opt/arin_waitlist.env https://raw.githubusercontent.com/valornode/arin-
 
 ---
 
-## Edit the .env
+## Edit the Environment Variables
 
 Open the file for editing:
 
