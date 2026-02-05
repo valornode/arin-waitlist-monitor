@@ -46,26 +46,26 @@ nano /opt/arin_waitlist.env
 ```
 Update the following fields:
 
-ARIN_TARGET_DATE
-This must exactly match the “Date and Time Added to Waiting List” shown on the ARIN IPv4 Waiting List page.
+- ARIN_TARGET_DATE \n
+    This must exactly match the “Date and Time Added to Waiting List” shown on the ARIN IPv4 Waiting List page.
 The match is case-sensitive and includes the day name and timezone.
 
-- SMTP_HOST
+- SMTP_HOST \n
     The hostname of your SMTP server.
 
-- SMTP_PORT
+- SMTP_PORT \n
     Use 465 for SMTPS (implicit TLS) or 587 for SMTP with STARTTLS.
 
-- SMTP_USER
+- SMTP_USER \n
     The username for SMTP authentication (usually an email address).
 
-- SMTP_PASS
+- SMTP_PASS \n
     The password or app-specific password for the SMTP account.
 
-- MAIL_FROM
+- MAIL_FROM \n
     The sender address shown in the email.
 
-- MAIL_TO
+- MAIL_TO \n
     One or more recipient email addresses. Multiple recipients can be separated by commas, semicolons, or spaces.
 
 ## Run the Script Manually
