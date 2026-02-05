@@ -1,30 +1,14 @@
 # ARIN IPv4 Waiting List Monitor
 
-This project monitors your position on the ARIN IPv4 Waiting List and sends an email update every time it runs.
-
-ARIN renders the IPv4 waiting list table using client-side JavaScript, which means traditional scraping tools such as curl, requests, or BeautifulSoup will not work. This script uses Playwright with headless Chromium to load the page like a real browser and extract the rendered table reliably.
-
-The script is designed to run manually or automatically on a schedule, such as every twelve hours, on a server.
-
----
-
-## Overview
-
 When the script runs, it launches a headless Chromium browser, loads the ARIN IPv4 Waiting List page, extracts the rendered table, locates your entry by matching the exact “Date and Time Added to Waiting List”, and sends an email with your current position. The previous position is stored locally so progress can be tracked over time.
 
 The script supports SMTP STARTTLS and SMTPS and can send notifications to multiple email recipients.
 
 ---
 
-## Requirements
-
-A Linux system is recommended, preferably Debian or Ubuntu. Python 3.9 or newer is required. The system must have outbound HTTPS access and SMTP access for email delivery using either port 465 (SMTPS) or port 587 (STARTTLS).
-
----
-
 ## One-Line Installation
 
-The following command installs system dependencies, creates a Python virtual environment, installs Playwright and Chromium, and downloads the script and example environment file:
+The following command installs system dependencies, creates a Python virtual environment and downloads the script and example environment file:
 
 ```bash
 apt update && apt install -y python3 python3-venv python3-pip curl && \
@@ -35,9 +19,10 @@ python -m playwright install --with-deps chromium && \
 curl -o /opt/arin_waitlist.py https://raw.githubusercontent.com/valornode/arin-waitlist-monitor/refs/heads/main/arin_waitlist.py && \
 curl -o /opt/arin_waitlist.env https://raw.githubusercontent.com/valornode/arin-waitlist-monitor/refs/heads/main/arin_waitlist.env
 ```
+
 ---
+
 ## Edit the .env
-After installation, the script will **not work until the `.env` file is updated** with your own values.
 
 Open the file for editing:
 
@@ -69,12 +54,17 @@ Update the following fields:
   
     One or more recipient email addresses. Multiple recipients can be separated by commas, semicolons, or spaces.
 
+---
+
 ## Run the Script Manually
+
+Run this to test the script and make sure your .env is setup properly.
 ```
 set -a && source /opt/arin_waitlist.env && set +a
 source /opt/arin-waitlist/bin/activate
 python /opt/arin_waitlist.py --once
 ```
+
 ---
 
 ## Run the Script Automatically
@@ -91,7 +81,9 @@ This will make the script run every day at midnight:
 ```
 0 0 * * * set -a && source /opt/arin_waitlist.env && set +a && source /opt/arin-waitlist/bin/activate && python /opt/arin_waitlist.py --once >> /var/log/arin_waitlist.log 2>&1
 ```
+
 ---
+
 ## Email Format
 ```
 Your current ARIN IPv4 waiting list position is:
