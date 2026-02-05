@@ -84,6 +84,11 @@ python /opt/arin_waitlist.py --once
 ---
 
 ## Run the Script Automatically
+
+Edit the crontab and add whichever you prefer:
+```
+crontab -e
+```
 This will make the script run every 12 hours:
 ```
 0 */12 * * * set -a && source /opt/arin_waitlist.env && set +a && source /opt/arin-waitlist/bin/activate && python /opt/arin_waitlist.py --once >> /var/log/arin_waitlist.log 2>&1
