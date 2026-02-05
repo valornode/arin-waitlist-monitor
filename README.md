@@ -108,4 +108,4 @@ Max Prefix: /XX | Min Prefix: /XX
 Time Checked:
 MM/DD/YYYY HH:MMPM CST
 ```
-![Email Example](https://share.bray.lat/u/secondhand-best-americanshorthair.png)
+![Email Example](https://share.bray.lat/u/clean-warlike-alpinegoat.png)
